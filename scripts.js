@@ -3,10 +3,6 @@ let abortButton = null;
 let landButton = null;
 let takeoffButton = null;
 let shuttleHeight = null;
-let upButton = null;
-let downButton = null;
-let rightButton = null;
-let leftButton = null;
 
 window.addEventListener("load", function() {
     abortButton = document.getElementById("missionAbort");
@@ -14,10 +10,12 @@ window.addEventListener("load", function() {
     takeoffButton = document.getElementById("takeoff");
     flightStatus = document.getElementById("flightStatus");
     shuttleHeight = document.getElementById("spaceShuttleHeight");
-    upButton = document.getElementById("upButton");
-    downButton = document.getElementById("downButton");
-    rightButton = document.getElementById("rightButton");
-    leftButton = document.getElementById("leftButton");
+    let upButton = document.getElementById("up");
+    let downButton = document.getElementById("down");
+    let rightButton = document.getElementById("right");
+    let leftButton = document.getElementById("left");
+    let rocket = document.getElementById("rocket");
+    rocket.style.position = "relative";
     
     takeoffButton.addEventListener("click", function() {
         let checkConfirm = window.confirm("Confirm that the shuttle is ready for takeoff.");
@@ -45,9 +43,27 @@ window.addEventListener("load", function() {
     });
 
     upButton.addEventListener("click", function() {
-        let element = document.getElementById("rocket");
-        let x = 100;
-        element.style.left = x + "px";
+        let positionString = rocket.style.top;
+        let position = positionString.slice(0, positionString.length - 2);
+        rocket.style.top = Number(position) - 10 + "px";
+    });
+
+    downButton.addEventListener("click", function() {
+        let positionString = rocket.style.top;
+        let position = positionString.slice(0, positionString.length - 2);
+        rocket.style.top = Number(position) + 10 + "px";
+    });
+
+    rightButton.addEventListener("click", function() {
+        let positionString = rocket.style.left;
+        let position = positionString.slice(0, positionString.length - 2);
+        rocket.style.left = Number(position) + 10 + "px";
+    });
+
+    leftButton.addEventListener("click", function() {
+        let positionString = rocket.style.left;
+        let position = positionString.slice(0, positionString.length - 2);
+        rocket.style.left = Number(position) - 10 + "px";
     });
 
 });
